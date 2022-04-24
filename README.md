@@ -13,6 +13,7 @@ imgui.window -> Used to open/close new windows.
 *	open( name, function ) -> opens a new window
 *	close( name ) -> closes the specified window
 *	invert( id, function ) -> opens or closes the window depending on its current state.
+*	get_ref( id ) -> returns the menu struct reference, or undefined if it is closed.
 *	is_open( name ) -> returns true if the named window is open
 
 
