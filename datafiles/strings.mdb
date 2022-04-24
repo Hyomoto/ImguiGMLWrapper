@@ -1,0 +1,24 @@
+GROUP skills
+
+MINING "Mining"
+TAILORING "Tailoring"
+ALCHEMY "Alchemy"
+SMITHING "Smithing"
+TOOLMAKING "Toolmaking"
+FLETCHING "Fletching"
+LUMBERJACK "Lumberjack"
+
+GROUP materials
+
+COPPER "Copper"
+TIN "Tin"
+BRONZE "Bronze"
+IRON "Iron"
+COAL "Coal"
+SILVER "Silver"
+GOLD "Gold"
+STONE "Stone"
+
+GROUP activities
+
+MINING "Mining"

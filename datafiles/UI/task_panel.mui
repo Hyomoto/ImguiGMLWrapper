@@ -1,0 +1,7 @@
+IMPORT ui.elements.progress AS progress
+
+PUSH color #333941
+PUSH sprite +sPanel2
+FRAME
+
+END

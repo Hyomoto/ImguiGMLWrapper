@@ -1,0 +1,60 @@
+IMPORT ui.elements.panel_header AS header
+IMPORT ui.elements.progress AS progress
+IMPORT ui.colors AS color
+
+interact $name:"item"
+sprite +sPanel1 2
+color color.mids
+margin 6 6
+FRAME
+    INCLUDE header {height:40,color:color.pale_orange}
+
+    FRAME . 32
+        justify center v
+        sprite {activity.sprite} {activity.index}
+        SPRITE . . Fit
+
+        SPACE 4 line
+
+        same line
+        font +fFont18_bold
+        color color.light
+        justify center v
+        TEXT {activity.name}
+
+        same line
+        justify center v
+        justify Right
+        interact "pause"
+        sprite +sPanel1 1
+        color color.mids
+        FRAME 24 24
+            sprite +sIcons1 9
+            SPRITE . . Fit
+        END
+    END
+
+    FRAME . 32
+        justify Bottom
+        font +fFont16
+        TEXT {output.name}
+        
+        same line
+        pos . 8
+        size 1.0 1.0 last
+        color {output.color}
+        sprite {output.sprite} {output.index}
+        SPRITE . . Fit
+
+        dynamic True
+        same line
+        justify center v
+        justify Right
+        name "remaining"
+        font +fFont14
+        TEXT {remaining}
+    END height
+    SPACE . 4
+
+    INCLUDE progress {height:12,sprite:+sPanel1,fgcolor:{output.color}}
+END height

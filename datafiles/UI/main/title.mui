@@ -1,0 +1,17 @@
+// title
+color #333941
+sprite +sPanel4
+FRAME 1.0 48
+    sprite +sFaces {@player.index}
+    SPRITE 48 48 True
+
+    same line
+    font +fFont18_bold
+    color #FFFFFF
+    TEXT {@player.name} Upper
+
+    same column
+    font +fFont18
+    justify center v
+    TEXT "IDLE"
+END

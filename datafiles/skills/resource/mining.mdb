@@ -1,0 +1,11 @@
+IMPORT template.skill {this:THIS} AS SELF
+IMPORT strings
+
+NAME strings.skills.mining
+SPRITE +sSkills0
+INDEX 4
+
+LEVEL "skill.mining.level"
+
+GROWTH "10 * level * level"
+POWER 1

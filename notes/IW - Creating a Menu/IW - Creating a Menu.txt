@@ -1,0 +1,64 @@
+ImguiGML Wrapper - Creating a menu
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+a. Module Overview
+b. Example
+
+a. Module Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The menubar feature of the wrapper is accessed through imgui.menubar and contains the following functions:
+
+add( id, menu )
+- Adds the provided menu to the menubar.  Note that `id` will be the name of the menu, but also the id
+used when calling remove().
+
+
+remove( id )
+- Removes the menu with the provided id from the menubar.
+
+
+shortcut( pattern... )
+- Returns true if the keyboard keys have been pressed, and provides masking to deconflict menu inputs
+and ensure that shortcuts will not overlap.  This should be called during the `step` method of
+the menu constructor (see below).  
+
+
+Additionally, the menu constructor may contain the following variables to affect menu behavior:
+
+handle
+- If provided, this will be used instead of the id as the menu display name.
+
+enable
+- If set to false, the menu will be disabled.
+
+
+a. Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Menus are written as constructors which are registered with the wrapper.  The normal method for doing so
+is by calling imguigml_wrapper_add_menu():
+
+imguigml_wrapper_add_menu( "My Menu", MyMenuFunction );
+
+The menu function must be a constructor which contains two methods, step and show.  Below you can
+find a basic example:
+
+function MyMenuFunction( _mode ) constructor {
+	show	= function() {
+		if ( imguigml_menu_item( "Quit", "Ctrl+Q" ))
+			game_end();
+		
+	}
+	step	= function() {
+		if ( imgui.menubar.shortcut( vk_control, ord( "Q" )) )
+			game_end();
+		
+	}
+
+}
+
+The `show()` method is called when the menu is opened, and should contain the code to display the menu. The
+imguigml_begin_menu() and imguigml_end_menu() are both called for the user, and thus this method only needs
+to describe the behavior found inside the menu.
+
+The `step()` method is called each frame, and should contain any code which is needed but doesn't involve
+drawing the menu.  This is typically the menu shortcuts.
+

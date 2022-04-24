@@ -1,0 +1,18 @@
+IMPORT ui.colors AS colors
+
+GROUP text18
+
+COLOR colors.text
+FONT "+fFont18"
+
+GROUP text18_bold
+
+COLOR colors.text
+FONT +fFont18_bold
+
+GROUP header
+
+COLOR #0707FA
+SIZE "0.5"
+ALIGN "Center"
+POSITION "0.5"

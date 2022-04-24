@@ -1,0 +1,13 @@
+color $bgcolor:#000000
+sprite $bgsprite:+sPanel4 $bgindex:0
+FRAME
+    FRAME
+        LIST $list:. INTO $template:. ID "item" BY $id:.
+    END height
+    
+    pos 0 0 absolute
+    size 1.0 1.0 last
+    color $fgcolor:#FFFFFF
+    sprite $fgsprite:+sPanel6 $fgindex:0
+    SPRITE 1.0 1.0 Stretch
+END height

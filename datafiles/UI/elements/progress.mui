@@ -1,0 +1,13 @@
+dynamic False
+FRAME $width:1.0 $height:1.0
+    name $barbg:"barbg"
+    color $bgcolor:#303030
+    sprite $sprite:+sPanel1 0
+    SPRITE 1.0 1.0 Stretch
+    
+    dynamic $dynamic:True
+    name $name:"barfg"
+    color $fgcolor:#FF0000
+    sprite $sprite:+sPanel1 0
+    SPRITE 0.0 1.0 Stretch
+END

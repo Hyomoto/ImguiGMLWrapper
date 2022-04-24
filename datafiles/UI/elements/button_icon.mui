@@ -1,0 +1,7 @@
+PUSH color $bgcolor:#FFFFFF
+PUSH sprite $bgsprite:+sPanel1 $bgindex:0
+FRAME $width:64 $height:64
+    PUSH sprite $fgsprite:+sIcons1 $fgindex:0
+    PUSH justify Center
+    SPRITE $fgwidth:0.9 $fgheight:0.9 Fit
+END

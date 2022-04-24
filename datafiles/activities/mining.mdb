@@ -1,0 +1,20 @@
+IMPORT template.activity AS SELF
+IMPORT skills.resource.mining AS skill
+IMPORT resources
+IMPORT strings
+
+NAME strings.activities.mining
+SPRITE +sSkills0
+INDEX 7
+RATE 10
+
+LEVEL "@player.skill.mining.level"
+
+SKILL skill
+BEHAVIOR "resource"
+
+LIST output FROM resources.ore BY order
+
+MAP modifiers
+    RATE "activity.mining.rate"
+END

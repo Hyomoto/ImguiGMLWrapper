@@ -1,0 +1,13 @@
+IMPORT template.resource AS SELF
+
+SPRITE +sResource0
+INDEX 0
+LEVEL 0
+
+MAP tags
+    ore
+END
+
+MAP modifiers
+    
+END

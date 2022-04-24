@@ -1,0 +1,30 @@
+IMPORT ui.colors AS color
+
+color $bgcolor:#000000
+sprite $bgsprite:+sPanel1 $bgindex:0
+margin  0.1 0.1
+padding . 0.1
+FRAME
+    FRAME
+        justify center h
+        font $textfont:+fFont14
+        TEXT $text:"Window"
+    END height
+
+    justify center h
+    color $fgcolor:#707070
+    sprite $fgsprite:+sPanel1 $fgindex:0
+    interact "ok"
+    FRAME 0.5 48
+        justify center
+        wrap False
+        color $buttonColor:#FFFFFF
+        TEXT $button:"Ok"
+    END
+
+    pos 0.0 0.0 absolute
+	size 1.0 4 absolute
+	sprite +sPanel1
+	color color.pale_orange
+	SPRITE 1.0 1.0 Stretch
+END height

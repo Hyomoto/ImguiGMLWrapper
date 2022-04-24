@@ -1,0 +1,20 @@
+IMPORT ui.colors AS color
+
+FRAME
+    interact $header:"header"
+    margin 8
+    color #2f3541
+    sprite +sPanel4 1
+    FRAME 1.0 24
+        font +fFont14
+        color #C4C4C4
+        TEXT $text:"Default"
+        
+        same line
+        justify right
+        sprite +sIcons2 $visible
+        SPRITE 24 24
+    END
+    sprite +sSpacer
+    SPRITE 1.0 8 Stretch
+END height

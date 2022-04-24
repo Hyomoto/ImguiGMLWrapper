@@ -1,0 +1,28 @@
+IMPORT ui.elements.task_pane AS task
+IMPORT ui.elements.task_pane_sub AS task_sub
+IMPORT ui.colors AS color
+
+sprite +sPanel4
+color color.dark
+margin 4 4
+padding . 4
+FRAME
+    sprite +sPanel4
+    color color.mids
+    FRAME
+        font +fFont14_bold
+        color color.light
+        TEXT " Tasks"
+    END height
+
+    sprite +sSpacer
+    SPRITE 1.0 8 Stretch
+
+    name "tasks"
+    padding . 4
+    FRAME
+        LIST {@player.tasks.list}[0] INTO task ID "item"
+
+        LIST {@player.tasks.list}[1..] INTO task_sub ID "item"
+    END
+END

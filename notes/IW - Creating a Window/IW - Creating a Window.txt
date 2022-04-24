@@ -1,0 +1,64 @@
+ImguiGML Wrapper - Creating a window
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+a. Module Overview
+b. Example
+
+a. Module Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The window feature of the wrapper is accessed through imgui.window and contains the following functions:
+
+open( id, function )
+- Opens a window with the given id using the provided function.
+
+
+close( id )
+- Closes the window with the given id if it exists.
+
+
+invert( id, function )
+- Opens or closes the window depending on its current state.
+
+
+is_open( id )
+- Returns true if the window with the given id is currently open.
+
+
+Additionally, the window constructor may contain the following variables to affect window behavior:
+
+handle
+- This is the name that will be shown on the window.
+
+open
+- If set to false, the window will not have the minimize/close buttons.
+
+flags
+- The EImGui_WindowFlags to apply to the window.
+
+a. Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Windows are defined using constructor functions.  They can then be opened by calling:
+
+imgui.window.open( "My Window", MyWindowFunction );
+
+
+The function itself must contain a `show()` method.  This is what is called by the imgui wrapper when
+the window is open.  If you would like the window to be closed, you can return IMGUI_WINDOW_CLOSE.
+
+
+function MyWindowFunction( _mode, _data ) {
+	show	= function() {
+		imguigml_text( "Hello There!" );
+		
+		if ( imguigml_button( "Close" ))
+			return IMGUI_WINDOW_CLOSE;
+		
+	}
+	handle	= "My Window";
+	
+}
+
+
+There is also one optional method, `setup()` which will be called before the menu code.  This can be
+used if there is code that must be run before the window is declared, this generally includes
+function calls that affect the window such as imguigml_set_next_window_size().
+

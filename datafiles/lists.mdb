@@ -1,0 +1,4 @@
+IMPORT skills
+
+LISTADD skills FROM skills.crafting
+LISTADD skills FROM skills.resource

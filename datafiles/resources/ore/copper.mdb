@@ -1,0 +1,13 @@
+IMPORT template.ore {this:THIS,path:PATH} AS SELF
+IMPORT strings
+
+ORDER 2
+NAME strings.materials.copper
+COLOR #704a07
+MASTERY 0
+XP 5
+RATE 1
+LEVEL 10
+
+MAP modifiers
+END

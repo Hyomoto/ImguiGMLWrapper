@@ -1,0 +1,9 @@
+PUSH margin 16 8
+PUSH sprite +sPanel4
+PUSH color {color}
+FRAME
+    justify center v
+    font +fFont24_bold
+    color #FFFFFF
+    TEXT {@player.name}
+END

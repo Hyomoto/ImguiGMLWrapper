@@ -1,0 +1,6 @@
+PATH "{path}"
+HARDNESS 1
+
+MAP tags
+    material
+END

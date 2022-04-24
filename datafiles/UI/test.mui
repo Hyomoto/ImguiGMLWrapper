@@ -1,0 +1,14 @@
+IMPORT ui.elements.button_icon AS button
+IMPORT ui.colors AS color
+
+sprite +sPanel5
+margin 16
+FRAME
+    name "bob"
+    justify Bottom
+    font +fFont14
+    TEXT "Hello!"
+
+    same line
+    TEXT "Hrm"
+END

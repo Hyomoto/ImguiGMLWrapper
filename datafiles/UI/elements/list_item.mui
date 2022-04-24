@@ -1,0 +1,15 @@
+pad 0.01
+color $bgcolor:#FFFFFF
+sprite $bgsprite:. $bgindex:1
+interact $item:"item"
+FRAME 1.0 $height:32
+    color $scolor:#FFFFFF
+    sprite $sprite:+sIcons1 $index:0
+    SPRITE 0.9 0.9 Fit
+
+    same line
+    justify center v
+    font $font:+fFont14
+    color $color:#FFFFFF
+    TEXT $text:"text"
+END

@@ -1,0 +1,32 @@
+IMPORT ui.colors AS color
+
+PUSH margin 4
+PUSH interact "item"
+PUSH color #2f3541
+PUSH sprite +sPanel4 1
+FRAME 1.0 36
+  PUSH pos 0.0 0.5
+  PUSH align Left Center
+  PUSH sprite +sSkills0 {index}
+  SPRITE 32 32
+  
+  PUSH align Right Center
+  PUSH same line
+  PUSH pos 1.0 0.5
+  PUSH margin 0.05
+  FRAME 1.0 32
+    PUSH color color.header
+    PUSH align Left Bottom
+    PUSH font +fFont16_bold
+    PUSH pos 0.0 1.0
+    PUSH wrap False
+    TEXT {name}
+
+    PUSH same line
+    PUSH font +fFont14
+    PUSH align Right Bottom
+    PUSH pos 1.0 0.9
+    PUSH wrap False
+    TEXT $level:{@lookup.player.level}
+  END
+END

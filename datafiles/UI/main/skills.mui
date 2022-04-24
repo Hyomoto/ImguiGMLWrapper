@@ -1,0 +1,45 @@
+IMPORT ui.elements.skill_header AS header
+IMPORT ui.elements.skill_pane AS skill
+IMPORT ui.colors AS color
+IMPORT ui.elements 
+
+IMPORT skills
+
+color color.dark
+sprite +sPanel4 0
+FRAME
+  // version
+  SPACE 1.0 4
+  color color.mids
+  sprite +sPanel4
+  FRAME 1.0 24
+    justify center hv
+    font +fFont10
+    TEXT "V0.0.1 (2022.17.3)"
+  END
+  SPACE 1.0 4
+  // skills
+  FRAME
+    INCLUDE header {header:"hideResource",text:"Resource Skills",visible:{hide.0}}
+    
+    hide {hide.0}
+    FRAME
+      sort Ascend
+      LIST skills.resource skill AS "item"
+    END height
+    
+    INCLUDE header {header:"hideCraft",text:"Crafting Skills",visible:{hide.1}}
+    
+    hide {hide.1}
+    FRAME
+      sort Ascend
+      LIST skills.crafting INTO skill AS "item"
+    END height
+    //INCLUDE non_combat_skills
+
+    SPACE 1.0 8
+
+    sprite +sSpacer
+    SPRITE 1.0 8 Stretch
+  END height
+END

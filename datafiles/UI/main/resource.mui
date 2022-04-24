@@ -1,0 +1,139 @@
+IMPORT ui.elements.panel_header AS header
+IMPORT ui.elements.icon_panel AS panel
+IMPORT ui.elements.button_icon AS button_icon
+IMPORT ui.elements.progress AS bar
+IMPORT ui.colors AS color
+
+color color.dark
+sprite +sPanel1
+margin 16 16
+pad . 4
+FRAME
+	pad 8
+	FRAME 1.0 48
+		sprite {activity.sprite} {activity.index}
+		SPRITE 48 48
+
+		same line
+		font +fFont24_bold
+		color color.header
+		justify center v
+		TEXT {activity.name}
+
+		justify Right
+		same line
+		sprite +sPanel1
+		color color.mids
+		FRAME 0.20 0.75
+		    font +fFont18_bold
+			justify center
+			TEXT {@lookup.activity.level}
+		END
+	END
+
+	sprite +sSpacer
+	SPRITE 1.0 8 Stretch
+
+	pad 8
+	FRAME 1.0 64
+		justify center v
+		font +fFont14
+		TEXT "Choose an output"
+
+		same line
+		color color.mids
+		sprite +sPanel5
+		margin 0.02
+		interact "material"
+		justify Right
+		FRAME
+			justify center v
+			sprite {output.sprite} {output.index}
+			color {output.color}
+			SPRITE 0.75 0.75 Fit
+
+			same line
+			SPACE 0.02
+
+			same line
+			justify center v
+			wrap False
+			TEXT {output.name}
+		END
+	END
+
+	pad 8
+	justify Right
+	FRAME 184 56
+		same line
+	    interact "less"
+	    justify center v
+		INCLUDE button_icon {fgindex:5,bgsprite:+sPanel5,bgcolor:color.mids,width:32,height:32}
+
+		same line
+		color color.mids
+		interact "input"
+		justify center v
+		sprite +sPanel5
+		FRAME 64 32
+			name  "total"
+			justify Center
+			font +fFont18
+			TEXT {total}
+		END
+
+		same line
+		interact "more"
+	    justify center v
+		INCLUDE button_icon {fgindex:6,bgsprite:+sPanel5,bgcolor:color.mids,width:32,height:32}
+		
+		same line
+	    interact "infinite"
+	    justify center v
+		INCLUDE button_icon {fgindex:4,bgsprite:+sPanel5,bgcolor:color.mids,width:32,height:32,fgwidth:0.75,fgheight:0.75}
+	END
+
+	justify Bottom
+	FRAME 1.0 48
+		interact "queue_task"
+		justify center v
+		color color.blue
+		sprite +sPanel1
+		FRAME 96 32
+			font +fFont14_bold
+			justify center
+			TEXT "Add Task"
+		END
+
+		pos 16
+		same line
+		interact "queue_sub_task"
+		justify center v
+		color color.red
+		sprite +sPanel1
+		FRAME 96 32
+			font +fFont14_bold
+			justify center
+			TEXT "Add Task"
+		END
+
+		same line
+		justify Right
+		justify center v
+		pad 4
+		FRAME 152 48
+			REPLACE text WITH {output.xp}
+			INCLUDE panel {color:color.red,icon:7}
+
+			same line
+			REPLACE text WITH {output.mastery}
+			INCLUDE panel {color:#776022,icon:2}
+
+			same line
+			REPLACE text WITH {time}
+			INCLUDE panel {icon:3}
+		END
+	END
+	INCLUDE header {color:color.pale_orange}
+	
+END

@@ -1,0 +1,33 @@
+IMPORT ui.elements.progress AS progress
+IMPORT ui.colors AS color
+
+interact "item"
+sprite +sPanel1 2
+color color.mids
+margin 6 6
+padding 4
+FRAME
+    FRAME . 16
+        justify center v
+        sprite {activity.sprite} {activity.index}
+        SPRITE . . Fit
+    END both
+
+    same line
+    FRAME . 16
+        font +fFont12
+        TEXT {output.name}
+        
+        same line
+        pos . 0 last
+        size 1.0 1.0 last
+        color {output.color}
+        sprite {output.sprite} {output.index}
+        SPRITE . . Fit
+
+        same line
+        justify center v
+        justify Right
+        TEXT {remaining}
+    END
+END height

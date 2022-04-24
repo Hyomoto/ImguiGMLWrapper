@@ -1,0 +1,14 @@
+ICON 0
+//+sSkills0
+
+MAP player
+  level   "@player.skill.{this}.level"
+  xp      "@player.skill.{this}.xp"
+  mastery "@player.skill.{this}.mastery"
+END
+
+MAP vars
+  level   1
+  xp      0
+  mastery 0
+END

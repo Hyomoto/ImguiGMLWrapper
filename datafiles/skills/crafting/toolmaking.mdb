@@ -1,0 +1,8 @@
+IMPORT template.skill {this:THIS} AS SELF
+IMPORT strings
+
+NAME strings.skills.toolmaking
+INDEX 7
+
+GROWTH "10 * level * level"
+POWER 1
