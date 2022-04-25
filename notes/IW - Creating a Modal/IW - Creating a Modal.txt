@@ -1,0 +1,47 @@
+ImguiGML Wrapper - Creating a Modal
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+a. Module Overview
+b. Example
+
+a. Module Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The modal feature of the wrapper is accessed through imgui.modals and contains the following functions:
+
+confirm( id, text, yes, no )
+- Creates a simple, blocking confirm modal.  Note that while this will block imgui interactions, it won't
+block gameplay interactions.  GMS will still respond to the mouse event as usual.  You can use the wrapper
+mouse functions to resolve this.
+
+
+a. Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Menus are written as constructors which are registered with the wrapper.  The normal method for doing so
+is by calling imguigml_wrapper_add_menu():
+
+imguigml_wrapper_add_menu( "My Menu", MyMenuFunction );
+
+The menu function must be a constructor which contains two methods, step and show.  Below you can
+find a basic example:
+
+function MyMenuFunction( _mode ) constructor {
+	show	= function() {
+		if ( imguigml_menu_item( "Quit", "Ctrl+Q" ))
+			game_end();
+		
+	}
+	step	= function() {
+		if ( imgui.menubar.shortcut( vk_control, ord( "Q" )) )
+			game_end();
+		
+	}
+
+}
+
+The `show()` method is called when the menu is opened, and should contain the code to display the menu. The
+imguigml_begin_menu() and imguigml_end_menu() are both called for the user, and thus this method only needs
+to describe the behavior found inside the menu.
+
+The `step()` method is called each frame, and should contain any code which is needed but doesn't involve
+drawing the menu.  This is typically the menu shortcuts.
+
+

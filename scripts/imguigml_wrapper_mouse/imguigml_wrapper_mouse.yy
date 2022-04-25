@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "ImguiGMLWrapper",
-    "path": "ImguiGMLWrapper.yyp",
+    "name": "Functions",
+    "path": "folders/ImGuiGML Wrapper/Functions.yy",
   },
   "resourceVersion": "1.0",
-  "name": "init",
+  "name": "imguigml_wrapper_mouse",
   "tags": [],
   "resourceType": "GMScript",
 }

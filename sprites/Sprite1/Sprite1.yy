@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "ImguiWrapper",
-    "path": "ImguiWrapper.yyp",
+    "name": "ImguiGMLWrapper",
+    "path": "ImguiGMLWrapper.yyp",
   },
   "resourceVersion": "1.0",
   "name": "Sprite1",

@@ -57,8 +57,6 @@ window	= new ( function() constructor {
 		table[$ _name ]	= new _script();
 		list	= variable_struct_get_names( table );
 		
-		show_debug_message( list );
-		
 	}
 	static close	= function( _name ) {
 		array_push( discard, _name )
