@@ -21,36 +21,6 @@ inspector = new ( function() constructor {
 	
 })();
 
-// Modal Helper
-modals	= {
-	confirm	: function( _name, _text, _yes = "Yes", _no = "No" ) {
-		var _result	= undefined;
-		
-		imguigml_push_item_width( 512 );
-		
-		if ( imguigml_begin_popup_modal( _name )[0] ) {
-			imguigml_text( _text );
-			imguigml_separator();
-			
-			if ( imguigml_button( _yes + "##modal.confirm" )) {
-				imguigml_close_current_popup();
-				_result	= true;
-				
-			}
-			imguigml_same_line();
-			if ( imguigml_button( _no + "##modal.confirm" )) {
-				imguigml_close_current_popup();
-				_result	= false;
-				
-			}
-			imguigml_end_popup();
-			
-		}
-		return _result;
-		
-	}
-	
-}
 // Window Helper
 window	= new ( function() constructor {
 	static open	= function( _name, _script ) {

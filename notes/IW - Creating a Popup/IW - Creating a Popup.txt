@@ -1,0 +1,44 @@
+ImguiGML Wrapper - Creating a Popup
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+a. Module Overview
+b. Example
+
+a. Module Overview
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The way pop-ups work in ImguiGML may be a bit confusing.  ImguiGML provides pre-built popups to make the
+process easier, and serve as an example, but the wrapper itself contains no special code to help with
+writing them.
+
+a. Example
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The popups that come with the wrapper are just normal functions.  This is because Imgui popups are remembered
+internally and tracking them is difficult.  It's important to note that a popup contains two parts: the call
+to open it, and the code to build it/recieve input from it.  For example:
+
+if ( imguigml_button( "Click Me!" ))
+	imguigml_open_popup( "My Popup" );
+
+This will tell Imgui that "My Popup" should be displayed.  However, due to the asyncronous behavior of the
+popup, the code to handle it does not go here.  We only want to call open popup *once*!  The code that
+builds the popup must happen continuously, and is therefore written outside of the triggering block:
+
+if ( imguigml_begin_popup( "My Popup" )) {
+	imguigml_text( "Hello!" );
+	
+	if ( imguigml_button( "Close" ))
+		imguigml_close_current_popup();
+	
+	imguigml_end_popup();
+		
+}
+
+Since we told Imgui that "My Popup" was open, the begin popup block will run.  If it has not, this
+block is ignored.  To use the built-in popups, you only need to pass the relevant arguments and
+test for the result.  This allows you to inline the code much as you would a normal Imgui element:
+
+if ( ImguiPopupConfirm( "My Popup", "Hello!" ))
+	show_debug_message( "User clicked 'Yes'" );
+
+In this case, ImguiPopupConfirm will return true if yes is clicked, no if no was clicked, and
+undefined otherwise.  You must still open the popup as described above.  Additionally, read the
+function description for each popup to see it's arguments and return types.
