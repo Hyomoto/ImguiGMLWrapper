@@ -1,5 +1,5 @@
-/// @param exists	The function to use to check if the asset exists
-/// @param [filter]	A function that, if true, omits this entry from the list.
+/// @param _exists	The function to use to check if the asset exists
+/// @param _filter	A function that, if true, omits this entry from the list.
 function assets_scan( _exists, _filter = function( _a ) { return false; }) {
 	var _list	= [];
 	

@@ -5,7 +5,7 @@ function ImguiWindowSettings() constructor {
 	}
 	static show	= function() {
 		var _i = imguigml_checkbox( "Remove Settings...", remove );
-		if ( _i[ 0 ] ) { remove	= _i[ 1 ]; }
+		if ( _i[ 0 ] ) { remove	= bool( _i[ 1 ] ); }
 		
 		var _list	= settings;
 		var _i = -1; repeat( array_length( _list )) { ++_i;

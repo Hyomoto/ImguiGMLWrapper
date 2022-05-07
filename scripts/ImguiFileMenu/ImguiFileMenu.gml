@@ -21,8 +21,8 @@ function ImguiFileMenu( _mode, _show ) constructor {
 		}
 		imguigml_separator();
 			
-		if ( imguigml_menu_item( "Settings" )) {
-			if ( not imgui.window.is_open( "File>Settings", "Ctrl+Shift+S" ))
+		if ( imguigml_menu_item( "Settings", "Ctrl+Shift+S" )) {
+			if ( not imgui.window.is_open( "File>Settings" ))
 				imgui.window.open( "File>Settings", ImguiWindowSettings );
 				
 		}

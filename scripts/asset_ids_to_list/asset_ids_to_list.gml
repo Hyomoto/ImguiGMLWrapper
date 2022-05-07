@@ -1,5 +1,5 @@
-/// @param array
-/// @param function
+/// @param _array
+/// @param _func
 function asset_ids_to_list( _array, _func ) {
 	var _output	= array_create( array_length( _array ));
 	

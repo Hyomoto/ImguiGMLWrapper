@@ -1,7 +1,8 @@
-/// @param exists		The function to use to check if the asset exists
-/// @param start_at		The index to start at, default is 0.
-/// @param [sub]		A function that returns the value to be used.
-/// @param [filter]		A function that, if true, omits this entry from the list.
+/// @param _exists		The function to use to check if the asset exists
+/// @param _start_at	The index to start at, default is 0.
+/// @param _sort		Whether or not to sort the list after generation.
+/// @param _sub			A function that returns the value to be used.
+/// @param _filter		A function that, if true, omits this entry from the list.
 function assets_scan_ext( _exists, _start_at, _sort, _sub = function( _a ) { return _a; }, _filter = function( _a ) { return false; }) {
 	var _list	= [];
 	
