@@ -17,7 +17,7 @@ imgui.window -> Used to open/close new windows.
 *	is_open( name ) -> returns true if the named window is open
 
 
-imgui.modals -> Used to open modals.
+imgui.popup -> Pre-built popups.
 *	confirm( name, text, yes, no ) -> Creates a "yes/no" style confirmation modal.
 
 
