@@ -3,8 +3,13 @@
 // Inherit the parent event
 event_inherited();
 
-// load helper functions
-event_user( 1 ); // settings
+// link sources
+settings	= __imgui_wrapper().settings;
+menubar		= __imgui_wrapper().menubar;
+window		= __imgui_wrapper().window;
+inspector	= __imgui_wrapper().inspector;
+mouse		= __imgui_wrapper().mouse;
+search		= __imgui_wrapper().search;
 
 logme	= function( _args ) {
 	if ( is_array( argument[ 0 ] ) == false ) {
@@ -56,34 +61,9 @@ logme	= function( _args ) {
 	show_debug_message( _string );
 				
 }
-
-save_settings	= function( _filename ) {
-	var _file	= file_text_open_write( _filename );
-	
-	file_text_write_string( _file, json_stringify( settings.data ));
-	
-	file_text_close( _file );
-	
-}
-load_settings	= function( _filename ) {
-	var _file	= file_text_open_read( _filename );
-	if ( _file == -1 )
-		return logme( "objImguiWrapper :: Couldn't load % because it didn't exist!", _filename );
-	
-	settings.data	= json_parse( file_text_read_string( _file ));
-	
-	logme( "objImguiWrapper :: Settings loaded from %.", _filename );
-	
-	file_text_close( _file );
-	
-}
-// initialize settings
-load_settings( IMGUI_SETTINGS_FILENAME );
-settings.set_category( "Default" );
 values	= {};
 
-event_user( 0 ); // windows
-
+// feather ignore once GM1043
 version	= ( function() {
 	if (!__imguigml_ext_call(_extImguiGML_get_version()))
 		return;
@@ -91,9 +71,12 @@ version	= ( function() {
 	
 })();
 
+if ( settings.error == 1 )
+	logme( "objImguiWrapper :: Couldn't load % because it didn't exist!", IMGUI_SETTINGS_FILENAME );
+else
+	logme( "objImguiWrapper :: Settings loaded from %.", IMGUI_SETTINGS_FILENAME );
+	
 // initial built-in features
-menubar.add( "File", ImguiFileMenu );
-settings.read( "Inspector Enable", true, "Enables the inspector window." );
 var _scale	= settings.read( "Imgui Scale", 1, "Allows you to change what scale Imgui is rendered at." );
 settings.on_change( "Imgui Scale", function( _v ) {
 	imguigml_set_display_scale( _v, _v );
@@ -101,7 +84,7 @@ settings.on_change( "Imgui Scale", function( _v ) {
 });
 
 imguigml_set_display_scale( _scale, _scale );
-
+// feather ignore once GM1019
 logme( "objImguiWrapper :: Initialized.  Imgui % in use.", version );
 
 #macro IMGUI_INSPECTOR_EVENT	0

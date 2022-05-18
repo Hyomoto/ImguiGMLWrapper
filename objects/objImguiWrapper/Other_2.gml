@@ -7,4 +7,3 @@ if ( variable_global_exists( "__imgui_init__" )) {
 	global.__imgui_init__ = [];
 	
 }
-

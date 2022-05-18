@@ -1,1 +1,1 @@
-save_settings( IMGUI_SETTINGS_FILENAME );
+settings.save( IMGUI_SETTINGS_FILENAME );
