@@ -12,7 +12,7 @@ function imguigml_wrapper_inspect( _id ) {
 			return;
 		
 		if ( not window.is_open( "Inspector" ))
-			window.open( "Inspector", ImguiWindowInspector );
+			window.open( "Inspector", inspector.script );
 		window.get_ref( "Inspector" ).handle = "Inspector :: " + object_get_name( _id.object_index );
 		
 		if ( inspector.inspecting != _id )
@@ -21,3 +21,4 @@ function imguigml_wrapper_inspect( _id ) {
 	}
 	
 }
+

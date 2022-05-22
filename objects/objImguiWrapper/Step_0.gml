@@ -26,7 +26,7 @@ if ( menubar.show ) {
 		_menu.step();
 		
 	}
-	var _w	= imguigml_get_content_region_avail_width();
+	var _w	= imguigml_get_content_region_avail_width() / imguiScale;
 	imguigml_same_line( _w ); imguigml_text( "FPS:" + string( fps ));
 	
 	imguigml_end_main_menu_bar();

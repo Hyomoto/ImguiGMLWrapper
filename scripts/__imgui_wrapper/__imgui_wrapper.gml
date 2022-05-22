@@ -7,12 +7,12 @@ function __imgui_wrapper() {
 		settings	= new ( function() constructor {
 			static set_category	= function( _category ) {
 				category	= _category;
-		
+				
 				if ( not variable_struct_exists( data, _category ))
 					data[$ _category ]	= {}
-		
+				
 				cache	= data[$ _category ];
-		
+				
 			}
 			static set_category_from_key	= function( _key ) {
 				var _category	= "Default";
@@ -26,14 +26,14 @@ function __imgui_wrapper() {
 			
 				}
 				if ( _category == "" )
-					return logme( "objImguiWrapper :: Couldn't read %, category must be named or omitted!", _key, _category );
+					return imgui_wrapper.logme( "objImguiWrapper :: Couldn't read %, category must be named or omitted!", _key, _category );
 				if ( _name == "" )
-					return logme( "objImguiWrapper :: Couldn't resolve %, variable must be named.", _key, _name );
-		
+					return imgui_wrapper.logme( "objImguiWrapper :: Couldn't resolve %, variable must be named.", _key, _name );
+				
 				set_category( _category );
-		
+				
 				return _name;
-		
+				
 			}
 			static read	= function( _name, _default, _tooltip ) {
 				var _key	= set_category_from_key( _name );
@@ -127,8 +127,15 @@ function __imgui_wrapper() {
 				inspections[$ object_get_name( _index ) ]	= _inspect;
 		
 			}
+			override	= function( _script = ImguiWindowInspector ) {
+				if ( is_method( _script ) == false && script_exists( _script ) == false )
+					return imgui_wrapper.logme(  "objImguiWrapper :: Bad value passed as inspector override: '%'!", _script );
+				script	= _script;
+				
+			}
 			inspecting	= noone;
 			inspections	= {}
+			script		= ImguiWindowInspector;
 			text		= "";
 			cleanup		= [];
 	
@@ -185,7 +192,7 @@ function __imgui_wrapper() {
 		menubar	= new ( function() constructor {
 			static add	= function( _name, _script ) {
 				if (( script_exists( _script ) || is_method( _script )) == false )
-					return logme( "Error adding menu item %, invalid script/function!", _name );
+					return imgui_wrapper.logme( "Error adding menu item %, invalid script/function!", _name );
 				array_push( list, [ _name, new _script() ] );
 				
 				return self;
@@ -305,7 +312,58 @@ function __imgui_wrapper() {
 			last		= undefined;
 	
 		})();
-
+		
+		logme	= function( _args ) {
+			if ( is_array( argument[ 0 ] ) == false ) {
+				var _a	= array_create( argument_count );
+				var _i = 0; repeat( argument_count ) { _a[ _i ] = argument[ _i ]; ++_i; }
+				_args	= _a;
+				
+			}
+			var _string = _args[ 0 ], _i = 0, _a = 1; repeat( string_count( "%", _string )) {
+				if ( _a >= array_length( _args ))
+					break;
+				
+				var _n	= string_pos_ext( "%", _string, _i );
+				
+				if ( _n != 1 && string_char_at( _string, _n - 1 ) == "\\" ) {
+					_string	= string_delete( _string, _n - 1, 1 );
+					_i		= _n - 1;
+					
+				} else {
+					if ( string_char_at( _string, _n + 1 ) == "[" ) {
+						var _s		= string_pos_ext( "]", _string, _n + 1 );
+						var _sep	= string_copy( _string, _n + 2, _s - _n - 2 );
+						
+						_string	= string_delete( _string, _n + 1, _s - _n );
+						
+						if ( is_array( _args[ _a ] )) {
+							var _array	= _args[ _a++ ];
+							var _as		= "";
+							
+							var _v = 0; repeat( array_length( _array )) {
+								if ( _v > 0 )
+									_as	+= _sep;
+								_as	+= string( _array[ _v++ ] );
+								
+							}
+							_string	= string_copy( _string, 1, _n - 1 ) + string( _as ) + string_delete( _string, 1, _n );
+							_i		= _n - 1 + string_length( _as );
+							
+							continue;
+							
+						}
+						
+					}
+					_string	= string_copy( _string, 1, _n - 1 ) + string( _args[ _a ] ) + string_delete( _string, 1, _n );
+					_i		= _n - 1 + string_length( string( _args[ _a++ ] ));
+					
+				}
+				
+			}
+			show_debug_message( _string );
+			
+		}
 		close_inspector	= function() {
 			inspectText	= "";
 			inspecting	= noone;
@@ -322,6 +380,7 @@ function __imgui_wrapper() {
 		initialized	= false;
 		
 	})();
+	
 	return instance;
 	
 }
