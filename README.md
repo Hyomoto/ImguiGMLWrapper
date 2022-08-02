@@ -2,7 +2,7 @@
 ImguiGML is already fairly easy, but there are certain tasks that are commonplace, and may have to be done
 repeatedly in a single project.  This wrapper provides injection points for the menubar, individual
 windows and modals, simple preferences that persist between runs, and several convenience features.  Most
-features are accessed through `imgui` and includes the following domains:
+features are accessed through `imgui_wrapper` and includes the following domains:
 
 imgui.menubar -> Used to add new menus to the menu bar.
 *	add( name, function ) -> adds a new item to the menubar
