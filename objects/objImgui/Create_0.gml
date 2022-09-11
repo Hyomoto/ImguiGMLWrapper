@@ -1,4 +1,5 @@
 ///@desc imgui - create
+/// feather ignore all
 gml_pragma("global", "global.__imguigml = noone;");
 if (global.__imguigml != noone && instance_exists(global.__imguigml))
 	instance_destroy(global.__imguigml);

@@ -1,10 +1,8 @@
-#macro imgui_wrapper	__imgui_wrapper()
+// feather ignore once GM2017
 function __imgui_wrapper() {
-	// feather ignore once GM1021
+	// feather ignore all
 	static instance	= new ( function() constructor {
-		// feather ignore once GM1043
-		// feather ignore once GM1021
-		settings	= new ( function() constructor {
+		static settings	= new ( function() constructor {
 			static set_category	= function( _category ) {
 				category	= _category;
 				
@@ -86,6 +84,7 @@ function __imgui_wrapper() {
 			}
 			static load	= function( _filename ) {
 				var _file	= file_text_open_read( _filename );
+				// feather ignore once GM1009
 				if ( _file == -1 ) {
 					error	= 1; // file not found
 					return;
@@ -109,18 +108,15 @@ function __imgui_wrapper() {
 			set_category( "Default" );
 			
 		})();
-		/// @desc Helper Functions
 		// Inspector Helper
-		// feather ignore once GM1043
-		// feather ignore once GM1021
-		inspector = new ( function() constructor {
+		static inspector = new ( function() constructor {
 			set_default	= function( _index ) {
 				var _inspect	= [];
 				
 				var _i = 1; repeat( argument_count - 1 ) {
-					if ( is_real( variable_instance_get( id, argument[ _i ] )))
+					if ( is_real( variable_instance_get( other.id, argument[ _i ] )))
 						array_push( _inspect, [ argument[ _i ], DEV_INSPECT_NUMBER ] );
-					else if ( is_string( variable_instance_get( id, argument[ _i ] )))
+					else if ( is_string( variable_instance_get( other.id, argument[ _i ] )))
 						array_push( _inspect, [ argument[ _i ], DEV_INSPECT_STRING ] );
 					++_i;
 				}
@@ -142,16 +138,14 @@ function __imgui_wrapper() {
 		})();
 
 		// Window Helper
-		// feather ignore once GM1043
-		// feather ignore once GM1021
-		window	= new ( function() constructor {
+		static window	= new ( function() constructor {
 			static open	= function( _name, _script ) {
 				table[$ _name ]	= new _script();
 				list	= variable_struct_get_names( table );
 		
 			}
 			static close	= function( _name ) {
-				array_push( discard, _name )
+				array_push( self.discard, _name )
 				
 			}
 			static invert	= function( _name, _script ) {
@@ -166,7 +160,7 @@ function __imgui_wrapper() {
 				
 			}
 			static get_ref	= function( _name ) {
-				return table[$ _name ];
+				return self.table[$ _name ];
 				
 			}
 			static cleanup	= function() {
@@ -186,11 +180,11 @@ function __imgui_wrapper() {
 			discard	= [];
 			
 		})();
-
-		// feather ignore once GM1043
-		// feather ignore once GM1021
-		menubar	= new ( function() constructor {
+		
+		static menubar	= new ( function() constructor {
 			static add	= function( _name, _script ) {
+				if ( is_string( _script ) && script_exists( _script ))
+					_script	= asset_get_index( _script );
 				if (( script_exists( _script ) || is_method( _script )) == false )
 					return imgui_wrapper.logme( "Error adding menu item %, invalid script/function!", _name );
 				array_push( list, [ _name, new _script() ] );
@@ -199,7 +193,7 @@ function __imgui_wrapper() {
 				
 			}
 			static remove	= function( _name ) {
-				var _i = 0; repeat( array_length( _list )) {
+				var _i = 0; repeat( array_length( list )) {
 					if ( list[ _i++ ][ 0 ] == _name )
 						return array_delete( list, _i - 1, 1 );
 					
@@ -233,17 +227,15 @@ function __imgui_wrapper() {
 			list	= [];
 			
 		})();
-
-		// feather ignore once GM1043
-		// feather ignore once GM1021
-		mouse	= new ( function() constructor {
+		
+		static mouse	= new ( function() constructor {
 			static update	= function() {
-				if ( mouse_check_button_pressed( mb_left ) && imgui.WantCaptureMouse == false )
+				if ( mouse_check_button_pressed( mb_left ) && objImgui.WantCaptureMouse == false )
 					left	= IMGUI_MOUSE_PRESSED;
 				else
 					left	= IMGUI_MOUSE_FREE;
 		
-				if ( mouse_check_button_pressed( mb_right ) && imgui.WantCaptureMouse == false )
+				if ( mouse_check_button_pressed( mb_right ) && objImgui.WantCaptureMouse == false )
 					right	= IMGUI_MOUSE_PRESSED;
 				else
 					right	= IMGUI_MOUSE_FREE;
@@ -253,12 +245,10 @@ function __imgui_wrapper() {
 			right	= 0;
 	
 		})();
-
-		// feather ignore once GM1043
-		// feather ignore once GM1021
-		search	= new( function() constructor {
-			/// @param array	The array to filter
-			/// @param [kwargs]
+		
+		static search	= new( function() constructor {
+			/// @param _array	The array to filter
+			/// @param _kwargs
 			/// @desc kwargs are
 			///		key: a unique search key, used to create multiple filters
 			///		compare: a function in the form function( _input, _compare ), and returns true if they match
@@ -313,7 +303,7 @@ function __imgui_wrapper() {
 	
 		})();
 		
-		logme	= function( _args ) {
+		static logme	= function( _args ) {
 			if ( is_array( argument[ 0 ] ) == false ) {
 				var _a	= array_create( argument_count );
 				var _i = 0; repeat( argument_count ) { _a[ _i ] = argument[ _i ]; ++_i; }
@@ -364,10 +354,10 @@ function __imgui_wrapper() {
 			show_debug_message( _string );
 			
 		}
-		close_inspector	= function() {
+		static close_inspector	= function() {
 			inspectText	= "";
 			inspecting	= noone;
-	
+			
 		}
 		menubar.show = bool( settings.read( "Show Menubar", true, "Whether or not the menu bar is shown." ));
 		settings.on_change( "Show Menubar", function( _v ) {

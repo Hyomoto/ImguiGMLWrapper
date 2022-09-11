@@ -1,5 +1,5 @@
 ///@desc enums / definitions for imguigml
-
+/// feather ignore all
 // easy access to ImGui
 #macro ImGuiGML (global.__imguigml)
 

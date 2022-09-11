@@ -1,6 +1,6 @@
 ///@function imguigml_config()
 ///@desc imguigml configuration
-
+/// feather ignore all
 /// Input configuration
 #macro Imguigml_Show_ImGui_cursor            (true)  // if this is false, we won't touch the GMS cursor while ImGui is active.
 #macro Imguigml_User_override                (false)  // if this is true, ImGuiGML will not call `window_set_cursor()` at the end of the step.

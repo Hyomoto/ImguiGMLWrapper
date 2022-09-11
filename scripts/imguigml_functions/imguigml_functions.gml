@@ -1,5 +1,5 @@
 ///@desc base imguigml functions
-
+/// feather ignore all
 global.___imguiIg = undefined;
 #macro __ImguiIg global.___imguiIg =
 

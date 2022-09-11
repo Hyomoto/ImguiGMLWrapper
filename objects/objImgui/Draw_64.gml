@@ -1,4 +1,5 @@
 ///@desc imgui - Draw GUI
+/// feather ignore all
 if (!DrawGUI)
 	return;
 

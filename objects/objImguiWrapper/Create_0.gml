@@ -1,3 +1,4 @@
+// feather ignore all
 #macro IMGUI_SETTINGS_FILENAME	"imgui_settings.cfg"
 
 // Inherit the parent event

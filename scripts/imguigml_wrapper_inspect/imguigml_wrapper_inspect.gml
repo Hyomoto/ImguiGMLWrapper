@@ -3,7 +3,7 @@
 ///		instance.
 function imguigml_wrapper_inspect( _id ) {
 	if ( ( is_numeric( _id ) && instance_exists( _id )) == false ) {
-		imgui.logme( "Bad reference, % couldn't be inspected.", _id );
+		objImgui.logme( "Bad reference, % couldn't be inspected.", _id );
 		return;
 		
 	}

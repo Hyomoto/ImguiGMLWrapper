@@ -9,7 +9,7 @@ function ImguiFileMenu( _mode, _show ) constructor {
 				
 		}
 		if ( imguigml_begin_menu( "Goto..." )) {
-			var _list	= imgui.search.filter( __roomList__ );
+			var _list	= objImgui.search.filter( __roomList__ );
 				
 			var _i = 0; repeat( array_length( _list )) {
 				if ( imguigml_menu_item( _list[ _i++ ] ))
@@ -22,8 +22,8 @@ function ImguiFileMenu( _mode, _show ) constructor {
 		imguigml_separator();
 			
 		if ( imguigml_menu_item( "Settings", "Ctrl+Shift+S" )) {
-			if ( not imgui.window.is_open( "File>Settings" ))
-				imgui.window.open( "File>Settings", ImguiWindowSettings );
+			if ( not objImgui.window.is_open( "File>Settings" ))
+				objImgui.window.open( "File>Settings", ImguiWindowSettings );
 				
 		}
 		if ( imguigml_menu_item( "Quit", "Ctrl+Q" )) {
@@ -33,14 +33,14 @@ function ImguiFileMenu( _mode, _show ) constructor {
 			
 	}
 	static step	= function() {
-		var _menubar	= imgui.menubar;
+		var _menubar	= objImgui.menubar;
 		
 		if ( _menubar.shortcut( vk_control, vk_shift, ord( "R" )) )
 			game_restart();
 		if ( _menubar.shortcut( vk_control, ord( "R" )) )
 			room_restart();
 		if ( _menubar.shortcut( vk_control, vk_shift, ord( "S" )) )
-			imgui.window.open( "File>Settings", ImguiWindowSettings );
+			objImgui.window.open( "File>Settings", ImguiWindowSettings );
 		if ( _menubar.shortcut( vk_control, ord( "Q" )) )
 			game_end();
 		

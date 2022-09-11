@@ -1,5 +1,5 @@
 ///@desc imgui - EndStep
-
+/// feather ignore all
 global.___imguiIg = undefined;
 if (!NewFrame)
 	return;

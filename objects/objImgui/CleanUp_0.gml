@@ -1,4 +1,5 @@
 ///@desc imgui - Clean Up
+/// feather ignore all
 var num_textures = array_length(Textures);
 var i = 1;
 repeat(num_textures - 1) {

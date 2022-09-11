@@ -4,13 +4,15 @@ function ImguiWindowSettings() constructor {
 		
 	}
 	static show	= function() {
-		var _i = imguigml_checkbox( "Remove Settings...", remove );
-		if ( _i[ 0 ] ) { remove	= bool( _i[ 1 ] ); }
+		var _rem = imguigml_checkbox( "Remove Settings...", remove );
+		if ( _rem[ 0 ] ) { remove	= bool( _rem[ 1 ] ); }
 		
 		var _list	= settings;
+		var _o;
+		
 		var _i = -1; repeat( array_length( _list )) { ++_i;
 			if ( imguigml_tree_node( _list[ _i ] )) {
-				var _header	= imgui.settings.data[$ _list[ _i ]];
+				var _header	= objImgui.settings.data[$ _list[ _i ]];
 				var _keys	= variable_struct_get_names( _header );
 				var _k	= -1; repeat( array_length( _keys )) { ++_k;
 					var _key	= _keys[ _k ];
@@ -23,23 +25,23 @@ function ImguiWindowSettings() constructor {
 						
 					}
 					if ( is_bool( _value ))
-						var _o	= imguigml_checkbox( _key, _value );
+						_o	= imguigml_checkbox( _key, _value );
 					else if ( is_numeric( _value ))
-						var _o	= imguigml_input_float( _key, _value, 0, 0, 2 );
+						_o	= imguigml_input_float( _key, _value, 0, 0, 2 );
 					else if ( is_string( _value ))
-						var _o	= imguigml_input_text( _key, _value, 255 );
+						_o	= imguigml_input_text( _key, _value, 255 );
 					else
-						var _o	= [ false ];
+						_o	= [ false ];
 					
 					if ( _o[ 0 ] ) {
-						imgui.settings.set( _key + "##" + _list[ _i ], _o[ 1 ] );
-						//if ( imgui.settings.actions[$ _list[ _i ] + "##" + _key ] != undefined )
-						//	imgui.settings.actions[$ _list[ _i ] + "##" + _key ]( _o[ 1 ] );
+						objImgui.settings.set( _key + "##" + _list[ _i ], _o[ 1 ] );
+						//if ( objImgui.settings.actions[$ _list[ _i ] + "##" + _key ] != undefined )
+						//	objImgui.settings.actions[$ _list[ _i ] + "##" + _key ]( _o[ 1 ] );
 						//_header[$ _key ]	= _o[ 1 ];
 						
 					}
 					if ( imguigml_is_item_hovered()) {
-						var _tooltip	= imgui.settings.tooltips[$ imgui.settings.category + "##" + _key ];
+						var _tooltip	= objImgui.settings.tooltips[$ objImgui.settings.category + "##" + _key ];
 						if ( _tooltip != undefined )
 							imguigml_set_tooltip( _tooltip );
 						
@@ -55,7 +57,7 @@ function ImguiWindowSettings() constructor {
 	}
 	handle		= "Settings";
 	
-	settings	= variable_struct_get_names( imgui.settings.data );
+	settings	= variable_struct_get_names( objImgui.settings.data );
 	remove		= false;
 	
 	array_sort( settings, function( _a, _b ) {

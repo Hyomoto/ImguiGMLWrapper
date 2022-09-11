@@ -1,6 +1,6 @@
 function ImguiWindowInspector() constructor {
 	static show	= function() {
-		static inspector	= imgui.inspector;
+		static inspector	= objImguiWrapper.inspector;
 		
 		if ( instance_exists( inspector.inspecting ) == false )
 			return IMGUI_WINDOW_CLOSE;
@@ -9,10 +9,10 @@ function ImguiWindowInspector() constructor {
 			event_user( IMGUI_INSPECTOR_EVENT );
 			imguigml_separator();
 				
-			var _u = imguigml_input_text( "##watcher", inspector.text, 255 );
-			if ( _u[ 0 ] )
-				inspector.text	= _u[ 1 ];
-				
+			var _txt = imguigml_input_text( "##watcher", inspector.text, 255 );
+			if ( _txt[ 0 ] )
+				inspector.text	= _txt[ 1 ];
+			
 			imguigml_same_line();
 			if ( imguigml_button( "Watch##inspector" )) {
 				var _val	= variable_instance_get( id, inspector.text );
@@ -42,14 +42,14 @@ function ImguiWindowInspector() constructor {
 					imguigml_same_line();
 				
 					if ( _inspect[ _i ][ 1 ] == DEV_INSPECT_NUMBER ) {
-						var _u = imguigml_drag_float( "##" + _name, _value, 1, 0, 0 );
-						if ( _u[ 0 ] )
-							variable_instance_set( id, _inspect[ _i ][ 0 ], _u[ 1 ] );
+						var _num = imguigml_drag_float( "##" + _name, _value, 1, 0, 0 );
+						if ( _num[ 0 ] )
+							variable_instance_set( id, _inspect[ _i ][ 0 ], _num[ 1 ] );
 					
 					} else {
-						var _u = imguigml_input_text( "##" + _name, _value, 255 );
-						if ( _u[ 0 ] )
-							variable_instance_set( id, _inspect[ _i ][ 0 ], _u[ 1 ] );
+						var _str = imguigml_input_text( "##" + _name, _value, 255 );
+						if ( _str[ 0 ] )
+							variable_instance_set( id, _inspect[ _i ][ 0 ], _str[ 1 ] );
 					
 					}
 					imguigml_same_line();
@@ -58,9 +58,9 @@ function ImguiWindowInspector() constructor {
 				}
 				if ( array_length( inspector.cleanup )) {
 					array_sort( inspector.cleanup, false );
-					var _i = 0; repeat( array_length( inspector.cleanup )) {
+					_i = 0; repeat( array_length( inspector.cleanup )) {
 						array_delete( _inspect, inspector.cleanup[ _i ], 1 );
-					
+						
 					}
 					inspector.cleanup	= [];
 				}
@@ -70,6 +70,7 @@ function ImguiWindowInspector() constructor {
 		}
 		
 	}
+	// feather ignore once GM2017
 	flags	= EImGui_WindowFlags.AlwaysAutoResize;
 	
 }

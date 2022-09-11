@@ -1,6 +1,4 @@
-// Inherit the parent event
-event_inherited();
-
+// feather ignore all
 // # Pointer Update
 mouse.update();
 

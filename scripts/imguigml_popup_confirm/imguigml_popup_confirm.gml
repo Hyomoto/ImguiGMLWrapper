@@ -2,12 +2,12 @@
 /// @param {String} _text	The text to display in the popup.
 /// @param {String} _yes	The text to display on the 'Yes' button.  Default: Yes
 /// @param {String} _no		The text to display on the 'No' button.  Default: No
-/// @param {Boolean} _blocking	If true, an input blocking popup is created.  Default: true
+/// @param {Bool} _blocking	If true, an input blocking popup is created.  Default: true
 /// @desc Describes a popup with some text and two buttons, by default Yes and No.  If the user
 ///		clicks 'Yes', true will be returned.  If they click 'No', false is returned.  This will
 ///		also close the popup. If no input was given, undefined is returned (nothing was clicked).
-/// @returns {Real|Undefined}
-function ImguiPopupConfirm( _name, _text, _yes = "Yes", _no = "No", _blocking = true ) {
+/// @returns {Undefined}
+function imguigml_popup_confirm( _name, _text, _yes = "Yes", _no = "No", _blocking = true ) {
 	var _result	= undefined;
 	
 	imguigml_push_item_width( 512 );

@@ -5,7 +5,7 @@ b. Example
 
 a. Module Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The window feature of the wrapper is accessed through imgui.window and contains the following functions:
+The window feature of the wrapper is accessed through objImgui.window and contains the following functions:
 
 open( id, function )
 - Opens a window with the given id using the provided function.
@@ -38,7 +38,7 @@ a. Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Windows are defined using constructor functions.  They can then be opened by calling:
 
-imgui.window.open( "My Window", MyWindowFunction );
+objImgui.window.open( "My Window", MyWindowFunction );
 
 
 The function itself must contain a `show()` method.  This is what is called by the imgui wrapper when
